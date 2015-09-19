@@ -1,10 +1,28 @@
 = Philips Hue Library for ESP8266 =
 
-This library is designed to access and control Philips Hue Lights Directly.
+This library is designed to access and control Philips Hue Lights Directly with an ESP8266 using the Arduino IDE.
 
-For more information about this library please visit us at
+To use:
+  1. Download ZIP
+  2. In Arduino IDE from the menu Sketch->Include Library->Add .ZIP Library...
+  3. Browse to the .zip file and install
+  4. Library will show up under Include Library
+  5. Examples are in File->Examples->ESP_Hue
+  
+Available Class Methods:
+	String getLightInfo(int lightNum);  								// Gets the light raw http request data
+	int getLightState(int lightNum);									// Gets Light State On, or Off
+	void setLight(int lightNum, int state, int sat, int bri, int hue);  // Set Light State, Saturation, Brightness, and Hue
+	void setLightPower(int lightNum, int state);						// Set Light Power On, or Off
+	String getGroupInfo(int groupNum);									// Gets the group raw http request data
+	int getGroupState(int groupNum);									// Gets Group State On, or Off
+	void setGroup(int groupNum, int state, int sat, int bri, int hue);  // Set Group State, Saturation, Brightness, and Hue
+	void setGroupPower(int groupNum, int state);	                 	// Set Group Power On, or Off
+
+See Examples for Usage
 
 
+------------------------------------------------------------------------------------
 == License ==
 
 Copyright (c) Richard Wardlow. All right reserved.
