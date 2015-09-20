@@ -21,7 +21,7 @@ ESPHue::ESPHue(WiFiClient& client, const char* APIKey, const char* host, uint8_t
 	_port = port;
 }
 
-String ESPHue::getLightInfo(int lightNum)
+String ESPHue::getLightInfo(byte lightNum)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");
@@ -39,7 +39,7 @@ String ESPHue::getLightInfo(int lightNum)
   return line;
 }
 
-int ESPHue::getLightState(int lightNum)
+int ESPHue::getLightState(byte lightNum)
 {
     int lightState = 0;
     String response = getLightInfo(lightNum);
@@ -55,7 +55,7 @@ int ESPHue::getLightState(int lightNum)
     return lightState;
 }
 
-void ESPHue::setLight(int lightNum, int state, int sat, int bri, int hue)
+void ESPHue::setLight(byte lightNum, byte state, byte sat, byte bri, unsigned int hue)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");
@@ -78,7 +78,7 @@ void ESPHue::setLight(int lightNum, int state, int sat, int bri, int hue)
   delay(100);
 }
 
-void ESPHue::setLightPower(int lightNum, int state)
+void ESPHue::setLightPower(byte lightNum, byte state)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");
@@ -102,7 +102,7 @@ void ESPHue::setLightPower(int lightNum, int state)
 }
 
 
-String ESPHue::getGroupInfo(int groupNum)
+String ESPHue::getGroupInfo(byte groupNum)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");
@@ -120,7 +120,7 @@ String ESPHue::getGroupInfo(int groupNum)
   return line;
 }
 
-int ESPHue::getGroupState(int groupNum)
+int ESPHue::getGroupState(byte groupNum)
 {
     int groupState = 0;
     String response = getGroupInfo(groupNum);
@@ -136,7 +136,7 @@ int ESPHue::getGroupState(int groupNum)
     return groupState;
 }
 
-void ESPHue::setGroup(int groupNum, int state, int sat, int bri, int hue)
+void ESPHue::setGroup(byte groupNum, byte state, byte sat, byte bri, unsigned int hue)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");
@@ -159,7 +159,7 @@ void ESPHue::setGroup(int groupNum, int state, int sat, int bri, int hue)
   delay(100);
 }
 
-void ESPHue::setGroupPower(int groupNum, int state)
+void ESPHue::setGroupPower(byte groupNum, byte state)
 {
   if (!_client->connect(_host, _port)) {
     Serial.println("connection failed");

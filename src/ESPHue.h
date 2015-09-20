@@ -15,14 +15,14 @@ class ESPHue
 {
 	public:
 		ESPHue(WiFiClient& client, const char* APIKey, const char* host, uint8_t port);
-		String getLightInfo(int lightNum);
-		int getLightState(int lightNum);
-		void setLight(int lightNum, int state, int sat, int bri, int hue);
-		void setLightPower(int lightNum, int state);
-		String getGroupInfo(int groupNum);
-		int getGroupState(int groupNum);
-		void setGroup(int groupNum, int state, int sat, int bri, int hue);
-		void setGroupPower(int groupNum, int state);
+		String getLightInfo(byte lightNum);
+		int getLightState(byte lightNum);
+		void setLight(byte lightNum, byte state, byte sat, byte bri, unsigned int hue);
+		void setLightPower(byte lightNum, byte state);
+		String getGroupInfo(byte groupNum);
+		int getGroupState(byte groupNum);
+		void setGroup(byte groupNum, byte state, byte sat, byte bri, unsigned int hue);
+		void setGroupPower(byte groupNum, byte state);
 		int ON = 1;
 		int OFF = 0; 
 		
