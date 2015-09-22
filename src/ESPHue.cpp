@@ -21,6 +21,21 @@ ESPHue::ESPHue(WiFiClient& client, const char* APIKey, const char* host, uint8_t
 	_port = port;
 }
 
+void ESPHue::setAPIKey(const char* APIKey)
+{
+	_apiKey = APIKey;
+}
+
+void ESPHue::setHubIP(const char* host)
+{
+	_host = host;
+}
+
+void ESPHue::setHubPort(uint8_t port)
+{
+	_port = port;
+}
+
 String ESPHue::getLightInfo(byte lightNum)
 {
   if (!_client->connect(_host, _port)) {

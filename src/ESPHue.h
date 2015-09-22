@@ -15,6 +15,9 @@ class ESPHue
 {
 	public:
 		ESPHue(WiFiClient& client, const char* APIKey, const char* host, uint8_t port);
+		void setAPIKey(const char* APIKey);
+		void setHubIP(const char* host);
+		void setHubPort(uint8_t port);
 		String getLightInfo(byte lightNum);
 		int getLightState(byte lightNum);
 		void setLight(byte lightNum, byte state, byte sat, byte bri, unsigned int hue);
