@@ -16,6 +16,12 @@ To use:
   
 Available Class Methods:
 
+	void setAPIKey(const char* APIKey);
+		
+	void setHubIP(const char* host);
+		
+	void setHubPort(uint8_t port);
+		
 	String getLightInfo(int lightNum);  								// Gets the light raw http request data
 	
 	int getLightState(int lightNum);									// Gets Light State On, or Off
