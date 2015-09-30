@@ -28,6 +28,8 @@ Available Class Methods:
 	
 	void setLight(int lightNum, int state, int sat, int bri, int hue);  // Set Light State, Saturation, Brightness, and Hue
 	
+	void setLight(int lightNum, int state, int sat, int bri, int hue, unsigned int trans);  // Set Light State, Saturation, Brightness, and Hue, with transition speed
+	
 	void setLightPower(int lightNum, int state);						// Set Light Power On, or Off
 
 	String getGroupInfo(int groupNum);									// Gets the group raw http request data
@@ -35,6 +37,8 @@ Available Class Methods:
 	int getGroupState(int groupNum);									// Gets Group State On, or Off
 
 	void setGroup(int groupNum, int state, int sat, int bri, int hue);  // Set Group State, Saturation, Brightness, and Hue
+	
+	void setGroup(int groupNum, int state, int sat, int bri, int hue, unsigned int trans);  // Set Group State, Saturation, Brightness, and Hue, with transition speed
 
 	void setGroupPower(int groupNum, int state);	                 	// Set Group Power On, or Off
 
