@@ -47,10 +47,10 @@ String ESPHue::getLightInfo(byte lightNum)
                "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n\r\n");
   String line;
+	delay(200);
   while(_client->available()){
     line = _client->readString();
   }
-  delay(100);
   return line;
 }
 
@@ -151,10 +151,10 @@ String ESPHue::getGroupInfo(byte groupNum)
                "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n\r\n");
   String line;
+	delay(200)
   while(_client->available()){
     line = _client->readString();
   }
-  delay(100);
   return line;
 }
 
