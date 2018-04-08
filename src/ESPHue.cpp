@@ -44,7 +44,7 @@ String ESPHue::getLightInfo(byte lightNum)
   }
   String url = "/api/" + String(_apiKey) + "/lights/" + lightNum;
   _client->print("GET " + url + " HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n\r\n");
   String line;
   while(_client->available()){
@@ -58,7 +58,7 @@ int ESPHue::getLightState(byte lightNum)
 {
     int lightState = 0;
     String response = getLightInfo(lightNum);
-    
+
     if (response.indexOf("\"on\":false") != -1)
     {
       lightState = 0;
@@ -84,8 +84,8 @@ void ESPHue::setLight(byte lightNum, byte state, byte sat, byte bri, unsigned in
     cmd += "false,";
   cmd += " \"sat\":" + String(sat) + ", \"bri\":" + String(bri) + ", \"hue\":" + String(hue) + "}";
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
@@ -107,8 +107,8 @@ void ESPHue::setLight(byte lightNum, byte state, byte sat, byte bri, unsigned in
     cmd += "false,";
   cmd += " \"sat\":" + String(sat) + ", \"bri\":" + String(bri) + ", \"hue\":" + String(hue) + ", \"transitiontime\":" + String(trans) + "}";
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
@@ -130,8 +130,8 @@ void ESPHue::setLightPower(byte lightNum, byte state)
     cmd += "false}";
 
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
@@ -148,7 +148,7 @@ String ESPHue::getGroupInfo(byte groupNum)
   }
   String url = "/api/" + String(_apiKey) + "/groups/" + groupNum;
   _client->print("GET " + url + " HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n\r\n");
   String line;
   while(_client->available()){
@@ -162,7 +162,7 @@ int ESPHue::getGroupState(byte groupNum)
 {
     int groupState = 0;
     String response = getGroupInfo(groupNum);
-    
+
     if (response.indexOf("\"on\":false") != -1)
     {
       groupState = 0;
@@ -188,8 +188,8 @@ void ESPHue::setGroup(byte groupNum, byte state, byte sat, byte bri, unsigned in
     cmd += "false,";
   cmd += " \"sat\":" + String(sat) + ", \"bri\":" + String(bri) + ", \"hue\":" + String(hue) + "}";
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
@@ -211,8 +211,8 @@ void ESPHue::setGroup(byte groupNum, byte state, byte sat, byte bri, unsigned in
     cmd += "false,";
   cmd += " \"sat\":" + String(sat) + ", \"bri\":" + String(bri) + ", \"hue\":" + String(hue) + ", \"transitiontime\":" + String(trans) + "}";
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
@@ -234,15 +234,11 @@ void ESPHue::setGroupPower(byte groupNum, byte state)
     cmd += "false}";
 
   int contLen = cmd.length();
-  _client->print("PUT " + url + "\r\n HTTP/1.1\r\n" +
-               "Host: " + _host + "\r\n" + 
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
                "Connection: keep-alive\r\n" +
                "Accept: */*\r\n" +
                "Content-Type: application/json\r\n" +
                "Content-Length: " + contLen + "\r\n\r\n" + cmd + "\r\n\r\n");
   delay(100);
 }
-
-
-
-
