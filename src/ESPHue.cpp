@@ -116,6 +116,52 @@ void ESPHue::setLight(byte lightNum, byte state, byte sat, byte bri, unsigned in
   delay(100);
 }
 
+void ESPHue::setLightTemperature(byte lightNum, byte state, byte bri, unsigned int ct)
+{
+  if (!_client->connect(_host, _port)) {
+    Serial.println("connection failed");
+    return;
+  }
+  String url = "/api/" + String(_apiKey) + "/lights/" + lightNum + "/state";
+  String cmd = "{\"on\":";
+  if (state == 1)
+    cmd += "true,";
+  else
+    cmd += "false,";
+  cmd += " \"bri\":" + String(bri) + ", \"ct\":" + String(ct) + "}";
+  int contLen = cmd.length();
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
+               "Connection: keep-alive\r\n" +
+               "Accept: */*\r\n" +
+               "Content-Type: application/json\r\n" +
+               "Content-Length: " + contLen + "\r\n\r\n" + cmd + "\r\n\r\n");
+  delay(100);
+}
+
+void ESPHue::setLightTemperature(byte lightNum, byte state, byte bri, unsigned int ct, unsigned int trans)
+{
+  if (!_client->connect(_host, _port)) {
+    Serial.println("connection failed");
+    return;
+  }
+  String url = "/api/" + String(_apiKey) + "/lights/" + lightNum + "/state";
+  String cmd = "{\"on\":";
+  if (state == 1)
+    cmd += "true,";
+  else
+    cmd += "false,";
+  cmd += " \"bri\":" + String(bri) + ", \"ct\":" + String(ct) + ", \"transitiontime\":" + String(trans) + "}";
+  int contLen = cmd.length();
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
+               "Connection: keep-alive\r\n" +
+               "Accept: */*\r\n" +
+               "Content-Type: application/json\r\n" +
+               "Content-Length: " + contLen + "\r\n\r\n" + cmd + "\r\n\r\n");
+  delay(100);
+}
+
 void ESPHue::setLightPower(byte lightNum, byte state)
 {
   if (!_client->connect(_host, _port)) {
@@ -210,6 +256,52 @@ void ESPHue::setGroup(byte groupNum, byte state, byte sat, byte bri, unsigned in
   else
     cmd += "false,";
   cmd += " \"sat\":" + String(sat) + ", \"bri\":" + String(bri) + ", \"hue\":" + String(hue) + ", \"transitiontime\":" + String(trans) + "}";
+  int contLen = cmd.length();
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
+               "Connection: keep-alive\r\n" +
+               "Accept: */*\r\n" +
+               "Content-Type: application/json\r\n" +
+               "Content-Length: " + contLen + "\r\n\r\n" + cmd + "\r\n\r\n");
+  delay(100);
+}
+
+void ESPHue::setGroupTemperature(byte groupNum, byte state, byte bri, unsigned int ct)
+{
+  if (!_client->connect(_host, _port)) {
+    Serial.println("connection failed");
+    return;
+  }
+  String url = "/api/" + String(_apiKey) + "/groups/" + groupNum + "/action";
+  String cmd = "{\"on\":";
+  if (state == 1)
+    cmd += "true,";
+  else
+    cmd += "false,";
+  cmd += " \"bri\":" + String(bri) + ", \"ct\":" + String(ct) + "}";
+  int contLen = cmd.length();
+  _client->print("PUT " + url + " HTTP/1.1\r\n" +
+               "Host: " + _host + "\r\n" +
+               "Connection: keep-alive\r\n" +
+               "Accept: */*\r\n" +
+               "Content-Type: application/json\r\n" +
+               "Content-Length: " + contLen + "\r\n\r\n" + cmd + "\r\n\r\n");
+  delay(100);
+}
+
+void ESPHue::setGroupTemperature(byte groupNum, byte state, byte bri, unsigned int ct, unsigned int trans)
+{
+  if (!_client->connect(_host, _port)) {
+    Serial.println("connection failed");
+    return;
+  }
+  String url = "/api/" + String(_apiKey) + "/groups/" + groupNum + "/action";
+  String cmd = "{\"on\":";
+  if (state == 1)
+    cmd += "true,";
+  else
+    cmd += "false,";
+  cmd += " \"bri\":" + String(bri) + ", \"ct\":" + String(ct) + ", \"transitiontime\":" + String(trans) + "}";
   int contLen = cmd.length();
   _client->print("PUT " + url + " HTTP/1.1\r\n" +
                "Host: " + _host + "\r\n" +
